@@ -1,0 +1,8 @@
+CREATE OR REPLACE PROCEDURE update_product_price (p_brand_id IN NUMBER, p_percentage IN NUMBER) AS
+BEGIN
+  UPDATE product
+  SET price = price * (1 + p_percentage / 100)
+  WHERE b_id = p_brand_id;
+
+  DBMS_OUTPUT.PUT_LINE('Rows updated: ' || SQL%ROWCOUNT);
+END;

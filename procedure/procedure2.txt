@@ -1,0 +1,8 @@
+CREATE OR REPLACE PROCEDURE get_product_grouped_by_bid AS
+BEGIN
+  FOR rec IN (SELECT b_id, AVG(price) as avg_price, AVG(review) as avg_review 
+              FROM product 
+              GROUP BY b_id) LOOP
+    DBMS_OUTPUT.PUT_LINE('Brand ID: '  rec.b_id  ', Average Price: '  rec.avg_price  ', Average Review: ' || rec.avg_review);
+  END LOOP;
+END;

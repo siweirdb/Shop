@@ -1,0 +1,15 @@
+CREATE OR REPLACE FUNCTION record_count(table_name IN VARCHAR2)
+RETURN NUMBER
+IS
+  count_records NUMBER;
+BEGIN
+  EXECUTE IMMEDIATE 'SELECT COUNT(*) FROM ' || table_name INTO count_records;
+  RETURN count_records;
+END;
+
+DECLARE
+  res NUMBER;
+BEGIN
+  res := record_count('customer');
+  DBMS_OUTPUT.PUT_LINE('Number of records in table customer: ' || res);
+END;
